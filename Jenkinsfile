@@ -28,7 +28,7 @@ pipeline {
                     docker-compose down
                     docker-compose up -d --force-recreate --no-deps --build thakali-site
                     '''
-                )
+                ) 
             }
         }
 
