@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   thakali-site:
-    image: thakali-site:latest
+    image: thakali-site
     build:
       context: .
       dockerfile: Dockerfile
