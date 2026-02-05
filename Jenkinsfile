@@ -6,6 +6,11 @@ pipeline {
         CONTAINER_NAME = "thakali-container"
     }
 
+    // Trigger: automatically run every 1 minute
+    triggers {
+        cron('H/1 * * * *') // H/1 means every 1 minute (Jenkins hashes H for load balancing)
+    }
+
     stages {
 
         stage('Checkout Code') {
