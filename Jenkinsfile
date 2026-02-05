@@ -16,8 +16,7 @@ pipeline {
         stage('Checkout / Pull Latest Code') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/pratikbishwakarma/thakali-website.git',
-                    clean: true
+                    url: 'https://github.com/pratikbishwakarma/thakali-website.git'
             }
         }
 
