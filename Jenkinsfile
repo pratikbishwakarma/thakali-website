@@ -17,28 +17,32 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %IMAGE_NAME% .'
+                bat script: 'docker build -t %IMAGE_NAME% .'
             }
         }
 
         stage('Stop Old Container') {
             steps {
-                bat '''
-                docker stop %CONTAINER_NAME%
-                docker rm %CONTAINER_NAME%
-                ''',
-                returnStatus: true // Continue even if the container doesn't exist
+                bat(
+                    script: '''
+                    docker stop %CONTAINER_NAME%
+                    docker rm %CONTAINER_NAME%
+                    ''',
+                    returnStatus: true
+                )
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                bat '''
-                docker run -d ^
-                --name %CONTAINER_NAME% ^
-                -p 80:80 ^
-                %IMAGE_NAME%
-                '''
+                bat(
+                    script: '''
+                    docker run -d ^
+                    --name %CONTAINER_NAME% ^
+                    -p 80:80 ^
+                    %IMAGE_NAME%
+                    '''
+                )
             }
         }
     }
