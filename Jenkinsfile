@@ -24,8 +24,8 @@ pipeline {
         stage('Stop Old Container') {
             steps {
                 bat '''
-                docker stop %CONTAINER_NAME% || true
-                docker rm %CONTAINER_NAME% || true
+                docker stop %CONTAINER_NAME% || echo Container not running
+                docker rm %CONTAINER_NAME% || echo Container not found
                 '''
             }
         }
@@ -35,7 +35,7 @@ pipeline {
                 bat '''
                 docker run -d ^
                 --name %CONTAINER_NAME% ^
-                -p 3000:80 ^
+                -p 80:80 ^
                 %IMAGE_NAME%
                 '''
             }
