@@ -24,9 +24,10 @@ pipeline {
         stage('Stop Old Container') {
             steps {
                 bat '''
-                docker stop %CONTAINER_NAME% || echo Container not running
-                docker rm %CONTAINER_NAME% || echo Container not found
-                '''
+                docker stop %CONTAINER_NAME%
+                docker rm %CONTAINER_NAME%
+                ''',
+                returnStatus: true // Continue even if the container doesn't exist
             }
         }
 
