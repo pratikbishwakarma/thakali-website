@@ -25,9 +25,8 @@ pipeline {
                 // Stop and remove old containers, build new image
                 bat(
                     script: '''
-                    docker-compose -f docker-compose.yaml down
-                    docker-compose -f docker-compose.yaml build
-                    docker-compose -f docker-compose.yaml up -d
+                    docker-compose down
+                    docker-compose up -d --force-recreate --no-deps --build thakali-site
                     '''
                 )
             }
