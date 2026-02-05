@@ -44,7 +44,7 @@ pipeline {
                     script: '''
                     docker run -d ^
                     --name %CONTAINER_NAME% ^
-                    -p 80:80 ^
+                    -p 3000:80 ^
                     %IMAGE_NAME%
                     '''
                 )
